@@ -11,6 +11,6 @@ Envoy [config](/assets/static-conf.yaml) is available in the [asset](/assets) fo
 
 Goal: Try to understand and create a service to control my Envoy proxy and be connected to other service that manage my Docker containers environment and serve TLS Let's encrypt cert with auto renewal. Like [Traefik](https://doc.traefik.io/traefik/), can configure Envoy proxy with container label via this service.
 
-![Envoy architecture](/assets/EnvoyProxyArch-Page1.jpeg "Envoy architecture")
+![Envoy architecture](assets/EnvoyProxyArch-Page1.jpeg "Envoy architecture")
 
-![Envoy architecture](/assets/EnvoyProxyArch-Page2.jpeg "Full services architecture")
+![Envoy architecture](assets/EnvoyProxyArch-Page2.jpeg "Full services architecture")

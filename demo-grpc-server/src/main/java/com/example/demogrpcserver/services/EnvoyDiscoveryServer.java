@@ -50,13 +50,14 @@ public class EnvoyDiscoveryServer {
 
         log.info("Try to build GRPC server");
 
-        File serverCaFile = new File("/private/tmp/grpc-envoy/certs/ca-cert.pem");
+        // To configure mTLS between gRPC server and Envoy proxy
+        /*File serverCaFile = new File("/private/tmp/grpc-envoy/certs/ca-cert.pem");
         File serverCertFile = new File("/private/tmp/grpc-envoy/certs/server-cert.pem");
         File serverKeyFile = new File("/private/tmp/grpc-envoy/certs/server-key.pem");
 
         if (!serverCertFile.exists() || !serverKeyFile.exists()) {
             throw new RuntimeException("Can't read server cert and/or key file for mTLS");
-        }
+        }*/
 
         try {
             // Envoy node cache
@@ -72,7 +73,8 @@ public class EnvoyDiscoveryServer {
                 // Create Netty server
                 NettyServerBuilder nettyServerBuilder = NettyServerBuilder.forPort(discoveryServerPort);
 
-                try {
+                // To configure mTLS between gRPC server and Envoy proxy
+                /*try {
                     SslContext sslContext = GrpcSslContexts.forServer(
                                     serverCertFile,
                                     serverKeyFile
@@ -81,11 +83,11 @@ public class EnvoyDiscoveryServer {
                             .clientAuth(ClientAuth.REQUIRE)
                             .build();
 
-                    // nettyServerBuilder.sslContext(sslContext);
+                    nettyServerBuilder.sslContext(sslContext);
 
                 } catch (SSLException e) {
                     throw new RuntimeException("Can't build ssl context for GRPC server for mTLS", e);
-                }
+                }*/
 
                 nettyServerBuilder.addService(discoveryServer.getAggregatedDiscoveryServiceImpl())
                         // .addService(discoveryServer.getClusterDiscoveryServiceImpl())
