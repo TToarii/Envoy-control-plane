@@ -1,0 +1,18 @@
+server:
+  port: 9070
+
+logging:
+  level:
+    web: debug
+    com:
+      example:
+        demogrpcserver: debug
+    io:
+      grpc: debug
+      envoyproxy:
+        controlplane: debug
+
+spring:
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false

@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "c017d921-689a-4e28-a163-a1bd7f6c8256",
+		"name": "Configure Envoy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clusters",
+			"item": [
+				{
+					"name": "Create Cluster - Http upstream 1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"http-upstream1\",\n    \"name\": \"ads_cluster_http_upstream1_swagger_01\",\n    \"port\": 80\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clusters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clusters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Cluster - Http upstream 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"http-upstream2\",\n    \"name\": \"ads_cluster_http_upstream2_swagger_01\",\n    \"port\": 80\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clusters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clusters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Cluster - Http upstream 3",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"http-upstream3\",\n    \"name\": \"ads_cluster_http_upstream3_swagger_01\",\n    \"port\": 80\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clusters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clusters"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Whoami",
+			"item": [
+				{
+					"name": "Create Cluster for Whoami",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"whoami\",\n    \"name\": \"ads_cluster_whoami_swagger_01\",\n    \"port\": 80\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/clusters",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clusters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Listener for Whoami",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"address\": \"0.0.0.0\",\n  \"name\": \"ads_listener_whoami_swagger_01\",\n  \"pairDomainClusterName\": [\n    {\n      \"clusterName\": \"ads_cluster_whoami_swagger_01\",\n      \"domain\": \"whoami.myifenua.com\"\n    }\n  ],\n  \"port\": 10006\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/listeners",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"listeners"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listener",
+			"item": [
+				{
+					"name": "Create error with listener",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"address\": \"0.0.0.0\",\n  \"name\": \"ads_listener_with_error\",\n  \"pairDomainClusterName\": [\n    {\n      \"clusterName\": \"xxxx\",\n      \"domain\": \"upstream.pf\"\n    }\n  ],\n  \"port\": 10004\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/listeners",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"listeners"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dynamic Listener",
+			"item": [
+				{
+					"name": "Cluster",
+					"item": [
+						{
+							"name": "Create Cluster - Http upstream 1 for dyn list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"address\": \"http-upstream1\",\n    \"name\": \"cluster_http_upstream1_dyn_list_swagger_01\",\n    \"port\": 80\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/clusters",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"clusters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Cluster - Nginx 1 for dyn list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"address\": \"nginx-1\",\n    \"name\": \"cluster_nginx_1_dyn_list_swagger_01\",\n    \"port\": 80\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/clusters",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"clusters"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Cluster - Http whoami for dyn list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"address\": \"whoami\",\n    \"name\": \"cluster_whoami_dyn_list_swagger_01\",\n    \"port\": 80\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/clusters",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"clusters"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Routes",
+					"item": [
+						{
+							"name": "Create Routes - Http upstream 1 for dyn list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"data\": [\n    {\n      \"clusterName\": \"cluster_http_upstream1_dyn_list_swagger_01\",\n      \"domain\": \"all\",\n      \"domainNameFilter\": \"*\"\n    }\n  ],\n  \"name\": \"routes_for_http_upstream1_dyn_list_swagger_01\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/routes",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"routes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Routes - Nginx 1 for dyn list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"data\": [\n    {\n      \"clusterName\": \"cluster_nginx_1_dyn_list_swagger_01\",\n      \"domain\": \"all\",\n      \"domainNameFilter\": \"*\"\n    }\n  ],\n  \"name\": \"routes_for_nginx_1_dyn_list_swagger_01\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/routes",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"routes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Routes - Whoami for dyn list",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"data\": [\n    {\n      \"clusterName\": \"cluster_whoami_dyn_list_swagger_01\",\n      \"domain\": \"all\",\n      \"domainNameFilter\": \"*\"\n    }\n  ],\n  \"name\": \"routes_for_whoami_dyn_list_swagger_01\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/routes",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"routes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Add secret to SDS #1 for dyn list",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"certificateChain\": \"-----BEGIN CERTIFICATE-----\\nMIIDIDCCAggCCQDDoEOeJU1YkDANBgkqhkiG9w0BAQsFADBSMQswCQYDVQQGEwJV\\nUzELMAkGA1UECAwCQ0ExGDAWBgNVBAoMD015RXhhbXBsZSwgSW5jLjEcMBoGA1UE\\nAwwTZG9tYWluMS5leGFtcGxlLmNvbTAeFw0yMTEwMjEyMjI1MjlaFw0yMjEwMjEy\\nMjI1MjlaMFIxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTEYMBYGA1UECgwPTXlF\\neGFtcGxlLCBJbmMuMRwwGgYDVQQDDBNkb21haW4xLmV4YW1wbGUuY29tMIIBIjAN\\nBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArBgGll/XH3fOrBT8HDrqr3Jj2vAm\\nBZrXAezG0EATNjy2ykDg4G3sxe4n9VLn5oOaoYVJA572VjX4kuzAorDLKP6Dw9gg\\nv/tvgMdc4USxTTtjK1KIBjrGE7Xyw3UKwO6k34XStDuN4A9MJ14sZfmmwyp1Sg6T\\nOR737YVs5WqxYZ+P+MAWFPFTnCK+Bo9d/5J3llBoKWT3Ou76vabkzp1emwQY8RDX\\ntt1U8zFm0L4zcnSDcktWbSo95/GWUg+ULNpMrLSsibvaBULGjE7Wzs5H+SejCNrh\\ndGL6eqK3YECflfPEWQpZAnwEVzjZfjqYjRTIwDFj5VS5/3kdqzli/cG0lQIDAQAB\\nMA0GCSqGSIb3DQEBCwUAA4IBAQAIltOq61MSvMN9bWVN3VsQQFJ8vjoCi/KknNb6\\nUANzv1n/36xfLac12fzzy7twDAgvntplLk4LYf+IQLtg015oCsLvousOpqIuKSPH\\n1zjYDROmAEeebF4Sc8EnXakojobR0RmEKXmf96CwYBT6RFl6xPVge8A1Ih9NiULX\\nbE3y+9anvywfiv7UtyN6Mb2Tr2Y3v779GAJ8HurOicoGlge2DruYFe4kz0auKxFQ\\nr3u5h7V0N20bpTqb1orDDLIoKQu5Yw6JiPk2QnikIuB6yBiHZhaSW8bRTeJmgORa\\ncEFvCq3/GAhIiJJkQ0MBOdVE4UKG+hNXhRMSIJMGRYhK6CiP\\n-----END CERTIFICATE-----\\n\",\n  \"name\": \"secret_http_upstream_1_for_dyn_list_tls_01\",\n  \"privateKey\": \"-----BEGIN PRIVATE KEY-----\\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCsGAaWX9cfd86s\\nFPwcOuqvcmPa8CYFmtcB7MbQQBM2PLbKQODgbezF7if1Uufmg5qhhUkDnvZWNfiS\\n7MCisMso/oPD2CC/+2+Ax1zhRLFNO2MrUogGOsYTtfLDdQrA7qTfhdK0O43gD0wn\\nXixl+abDKnVKDpM5HvfthWzlarFhn4/4wBYU8VOcIr4Gj13/kneWUGgpZPc67vq9\\npuTOnV6bBBjxENe23VTzMWbQvjNydINyS1ZtKj3n8ZZSD5Qs2kystKyJu9oFQsaM\\nTtbOzkf5J6MI2uF0Yvp6ordgQJ+V88RZClkCfARXONl+OpiNFMjAMWPlVLn/eR2r\\nOWL9wbSVAgMBAAECggEAbQcLpVkywQz2Mq9YycnJxT2DZcGfVQ20CdQoYOc3RLVS\\nWPChh44c44juZ84OfUwDOzFmAJVFG3k18l9r66Z2D5Kvh/P1S6vQCJZFkbIjYfqt\\n6VRwOQIjW3l6Q7pzBagrbDEsPGM+jyUh6g8Psctoi1zq0fBJ9XZZPHG7e90MY/vZ\\nBcHZiC7fecYWjJu3oQ2PADpS0vnxRLUI3/qihYYdYUhqGGKsKn8GT/RNZJv9lp1R\\nojYvdUEpviz+fIFAuNZWFPPAlNcPQo0PV8ncixAobaYNPRtVoSG0WDXgIGxUQGjT\\nfqJTNayRv5d6gONNdzg0gqjQAw109s6s/FHVp8EeAQKBgQDWf6TAtIefC/HINOyw\\nKuvQpUvbj/NoqRwt3OGm1pTDTTLKwj/EoWjK1t5C6VTY3fc1izLKLfwXO4nn5INj\\n4lxxMfl+gg1tSc2Tk43h7x52r+iojJERLeW57v5T5Fmaby0+zwyjBTrKAoxIOeHM\\nPkhd/AU3dRIeQI3PBjBAD9zyGQKBgQDNZAbqxXqHCB3rJd6iAy6xHb95ekorPHOE\\noma3/99aP0e3JJOvdqgHzHNRIUMQR5KpKHQV/ffM56cie1xC37Ub1D7xmjrg+5qT\\nhXjqFyYtcJ4C2fREHRvyv0W7DCcEFh8WHaLXezva3Cn9VlCew8OQlNYiGwqGaSs1\\nt32hoxL93QKBgEnwYBtpX6KsnGC2Fay4budSQ27hFTfLq4IHtOUs7MTR1KNeCFtA\\nhH3/SUhpZC0JfpC/dfeJmG9tv6Dm/X+t5M3EO0univdUTIAFihAKvEaPZrTLF6qD\\nVsAcKSFEArsgfck72BBN2jEOZcrz4Ojlw05adHXkbiVtfTSS3okGrtPpAoGBAKsL\\nrD8D6oBdoBzeUsP1hoL11SmjT/UlyMYiQQzmx+juXhkFGwC6/kBQYZCk9KawFFFP\\nYS2XbTB1ktjChxkiGD9uyGSIHpSStC46r3GziZW5/b0+KZA39bh41edpvWxHx+ex\\nEpYFCNnBFC7oHQe63Dih2ppYjrFVECkSAEwF9KD5AoGAAv3P+NBOy4AnS3wacVlQ\\n/gs1hp2BUh8YEPFyl3rDOmUV9XO8rX2pKf711ALAuxkP1IV2dr/siLqSvjVctZgh\\nlhtiCsMsswCKNpFFCJZNnzWVy+muX3varmzg1+41FmpMoWcH2pD/ggn5EVA1UDfx\\nJKjdizvKrBSuvI4ta0wDc6w=\\n-----END PRIVATE KEY-----\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/secrets",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"secrets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit dynamic Cluster - HTTPS (443)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"httpConfigs\": [\n    {\n      \"sdsConfigNames\": [\n        \"secret_http_upstream_1_for_dyn_list_tls_01\"\n      ],\n      \"domainNames\": [\n        \"upstream-test.pf\"\n      ],\n      \"rdsConfigName\": \"routes_for_http_upstream1_dyn_list_swagger_01\"\n    },\n    {\n      \"sdsConfigNames\": [\n        \"secret_default_cert\"\n      ],\n      \"domainNames\": [\n        \"nginx-2.fenua.pf\",\n        \"ngx.pf\",\n        \"ngx.fenua.com\"\n      ],\n      \"rdsConfigName\": \"routes_for_nginx_1_dyn_list_swagger_01\"\n    },\n    {\n      \"sdsConfigNames\": [\n        \"secret_default_cert\"\n      ],\n      \"domainNames\": [\n        \"whoami.ifenua.dev\",\n        \"whoami.dev\"\n      ],\n      \"rdsConfigName\": \"routes_for_whoami_dyn_list_swagger_01\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/dynamics-listeners/:name",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"dynamics-listeners",
+								":name"
+							],
+							"variable": [
+								{
+									"key": "name",
+									"value": "listener_default_443"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:9070/grpc"
+		}
+	]
+}
